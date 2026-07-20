@@ -6,7 +6,7 @@ from prompts import prompt_for_username
 from utils import *
 
 def delete_user(cfg, username):
-    standard_url(cfg, "user")
+    url = standard_url(cfg, "user")
 
     body = {
         "screen_name": username

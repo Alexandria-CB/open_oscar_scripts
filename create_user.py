@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from requests import post
-
 from load_config import load_config
 from prompts import prompt_for_credentials
 from utils import *
