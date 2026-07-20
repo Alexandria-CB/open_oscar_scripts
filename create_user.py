@@ -4,9 +4,10 @@ from requests import post
 
 from load_config import load_config
 from prompts import prompt_for_credentials
+from utils import *
 
 def create_user(cfg, username, password):
-    url = f"http://{cfg['hostname']}:{cfg['port']}/user"
+    url = standard_url(cfg, "user")
         
     body = {
         "screen_name": username,

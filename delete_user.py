@@ -3,9 +3,10 @@
 from requests import delete
 from load_config import load_config
 from prompts import prompt_for_username
+from utils import *
 
 def delete_user(cfg, username):
-    url = f"http://{cfg['hostname']}:{cfg['port']}/user"
+    standard_url(cfg, "user")
 
     body = {
         "screen_name": username
