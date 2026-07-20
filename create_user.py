@@ -1,28 +1,25 @@
 #!/usr/bin/env python3
 
-import requests
-import sys
-from getpass import getpass
-import json
-import os
+from requests import post
 
-DEFAULT_CONFIG_FILE = os.path.join(os.path.split(__file__)[0], "open_oscar.json")
+from load_config import load_config
+from prompts import prompt_for_credentials
 
-with open(DEFAULT_CONFIG_FILE, 'r') as cfg_file:
-    cfg = json.load(cfg_file)
+def create_user(cfg, username, password):
+    url = f"http://{cfg['hostname']}:{cfg['port']}/user"
+        
+    body = {
+        "screen_name": username,
+        "password": password
+    }
 
-username = input("Enter a username: ")
-password = getpass("Enter a password: ")
+    return post(url, json=body).text
 
-if password != getpass("Enter it again: "):
-    print("Passwords don't match.", file=sys.stderr)
-    exit(-1)
-
-url = f"http://{cfg['hostname']}:{cfg['port']}/user"
-    
-body = {
-    "screen_name": username,
-    "password": password
-}
-
-print(requests.post(url, json=body).text)
+if __name__ == "__main__":
+    try:
+        cfg = load_config()
+        username, password = prompt_for_credentials()
+        print(create_user(cfg, username, password))
+    except Exception as ex:
+        print(ex)
+        exit(-1)
