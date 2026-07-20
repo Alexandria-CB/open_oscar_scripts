@@ -21,3 +21,12 @@ def prompt_for_username(confirm=True):
         if confirmation.lower() not in AFFIRMITIVE:
             raise ValueError("Username incorrect.")
     return username
+
+def prompt_for_chatroom_name(confirm=True):
+    global AFFIRMITIVE
+    roomname = input("Enter a chatroom name: ")
+    if confirm:
+        confirmation = input(f"Is {roomname} correct? [Y/n]: ")
+        if confirmation.lower() not in AFFIRMITIVE:
+            raise ValueError("Chatroom name incorrect.")
+    return roomname
