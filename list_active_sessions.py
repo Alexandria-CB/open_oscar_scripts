@@ -6,7 +6,7 @@ from utils import *
 
 def list_active_sessions(cfg):
     url = standard_url(cfg, "session")
-    return get(url).json
+    return get(url).json()
 
 if __name__ == "__main__":
     try:
