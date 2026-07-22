@@ -1,4 +1,6 @@
 {
     "hostname": "localhost",
-    "port": 8080
+    "port": 8080,
+    "public_hostname": "localhost",
+    "public_port": "5190"
 }
